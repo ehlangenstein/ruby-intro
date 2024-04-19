@@ -7,7 +7,7 @@ uri = URI(url)
 response = Net::HTTP.get(uri)
 bitcoin_data = JSON.parse(response)
 # ----------------------
-
+# JSON is a type of hash 
 # To run this code, be sure your current working directory
 # is the same as where this file is located and then run:
 # ruby 4-hashes.rb
@@ -29,4 +29,14 @@ bitcoin = gets.chomp
 bitcoin = bitcoin.to_f
 
 # 3. inspect the bitcoin_data hash
-# puts bitcoin_data
+puts bitcoin_data["bpi"]["USD"]["rate_float"]
+
+# extract usd rate from bitcoin data
+usd_rate = bitcoin_data["bpi"]["USD"]["rate_float"]
+# calc value of bitcoin in usd 
+usd_value = usd_rate*bitcoin
+
+# display output
+puts "1 Bitcoin is valued at $#{usd_rate} USD."
+puts "Your Bitcoin is worth $#{usd_value}."
+
