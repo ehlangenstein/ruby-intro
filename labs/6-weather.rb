@@ -16,8 +16,8 @@
 # - 72 degrees and Partly Cloudy
 # - 60 degrees and Rainy
 
-# Note: only display the chance of rain if above 50%.
-# Note: do not display the chance of rain if conditions are already rainy.
+# # Note: only display the chance of rain if above 50%.
+# # Note: do not display the chance of rain if conditions are already rainy.
 
 weather_data = {
   current: {
@@ -34,3 +34,47 @@ weather_data = {
     { temperature: 60, conditions: "Rainy", precipitation: 0.9 }
   ]
 }
+
+# Current data 
+current_temp = weather_data[:current][:temperature]
+current_conditions = weather_data[:current][:conditions]
+puts "Currently it is #{current_temp} degrees and #{current_conditions}."
+puts "Forecast for the next 7 days:"
+
+for forecast in weather_data[:forecast]
+  temp_forecast = forecast[:temperature]
+  condition_forecast = forecast[:conditions]
+  precip_forecast = forecast[:precipitation]
+  if condition_forecast == "Rainy"
+    puts "- #{temp_forecast} degrees and #{condition_forecast}"
+  else 
+    if precip_forecast > 0.5 
+      chance_of_rain = precip_forecast*100
+      puts "- #{temp_forecast} degrees and #{condition_forecast} with a #{chance_of_rain.round(0)}% chance of rain"
+    else 
+      puts "- #{temp_forecast} degrees and #{condition_forecast}"
+    end 
+  end 
+  # puts "#{temp_forecast} and #{condition_forecast} and #{precip_forecast}"
+end 
+
+
+
+# temp = 0 
+# condition = "condition"
+# for weather in weather_data 
+#   if weather[:current]
+#     temp = weather[current][temperature]
+#     condition = weather[current][temperature]
+#     puts "Currently it is #{temp} and #{condition}"
+#   end
+# end 
+
+
+# for forecast in weather_data.forecast
+# end 
+
+
+# options = { font_size: 10, font_family: "Arial" }
+
+# p options[:font_size]
